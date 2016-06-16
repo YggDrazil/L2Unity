@@ -50,16 +50,16 @@ public class SQLAccountManager
 		{
 			while (true)
 			{
-				System.out.println("Please choose an option");
+				System.out.println("Bitte waehle eine Option");
 				System.out.println();
-				System.out.println("1 - Create new account or update existing one (change pass and access level)");
-				System.out.println("2 - Change access level");
-				System.out.println("3 - Delete existing account");
-				System.out.println("4 - List accounts and access levels");
-				System.out.println("5 - Exit");
+				System.out.println("1 - Erstellt einen neuen oder Aktualisiert einen bestehenden Account");
+				System.out.println("2 - Lege das Zugriffslevel fest (Admin / Gm / Benutzer");
+				System.out.println("3 - Entferne einen bestehenden Account");
+				System.out.println("4 - Zeige Accounts und Zugriffslevel");
+				System.out.println("5 - Beenden");
 				while (!(_mode.equals("1") || _mode.equals("2") || _mode.equals("3") || _mode.equals("4") || _mode.equals("5")))
 				{
-					System.out.print("Your choice: ");
+					System.out.print("Deine Wahl: ");
 					_mode = _scn.next();
 				}
 				
@@ -67,7 +67,7 @@ public class SQLAccountManager
 				{
 					while (_uname.trim().length() == 0)
 					{
-						System.out.print("Username: ");
+						System.out.print("Benutzer: ");
 						_uname = _scn.next().toLowerCase();
 					}
 					
@@ -75,7 +75,7 @@ public class SQLAccountManager
 					{
 						while (_pass.trim().length() == 0)
 						{
-							System.out.print("Password: ");
+							System.out.print("Passwort: ");
 							_pass = _scn.next();
 						}
 					}
@@ -84,7 +84,7 @@ public class SQLAccountManager
 					{
 						while (_level.trim().length() == 0)
 						{
-							System.out.print("Access level: ");
+							System.out.print("Zugriffslevel: ");
 							_level = _scn.next();
 						}
 					}
@@ -103,18 +103,18 @@ public class SQLAccountManager
 				else if (_mode.equals("3"))
 				{
 					// Delete
-					System.out.print("WARNING: This will not delete the gameserver data (characters, items, etc..)");
-					System.out.print(" it will only delete the account login server data.");
+					System.out.print("ACHTUNG: Das Entfernt nicht die Tabellen der GS DB (Charaktere, Items, usw..)");
+					System.out.print(" es werden lediglich die Kontodaten der Login DB entfernt.");
 					System.out.println();
-					System.out.print("Do you really want to delete this account? Y/N: ");
+					System.out.print("Soll der Account wirklich unwiederuflich Entfern werden? J/N: ");
 					String yesno = _scn.next();
-					if ((yesno != null) && yesno.equalsIgnoreCase("Y"))
+					if ((yesno != null) && yesno.equalsIgnoreCase("J"))
 					{
 						deleteAccount(_uname.trim());
 					}
 					else
 					{
-						System.out.println("Deletion cancelled.");
+						System.out.println("Abgebrochen.");
 					}
 				}
 				else if (_mode.equals("4"))
@@ -122,15 +122,15 @@ public class SQLAccountManager
 					// List
 					_mode = "";
 					System.out.println();
-					System.out.println("Please choose a listing mode");
+					System.out.println("Waehle eine Art der Auflistung");
 					System.out.println();
-					System.out.println("1 - Banned accounts only (accessLevel < 0)");
-					System.out.println("2 - GM/privileged accounts (accessLevel > 0");
-					System.out.println("3 - Regular accounts only (accessLevel = 0)");
-					System.out.println("4 - List all");
+					System.out.println("1 - Nur gesperrte Accounts (accessLevel < 0)");
+					System.out.println("2 - Accounts mit GM Rechten (accessLevel > 0");
+					System.out.println("3 - Regulaere Konten (accessLevel = 0)");
+					System.out.println("4 - Zeige Alles");
 					while (!(_mode.equals("1") || _mode.equals("2") || _mode.equals("3") || _mode.equals("4")))
 					{
-						System.out.print("Your choice: ");
+						System.out.print("Deine Wahl: ");
 						_mode = _scn.next();
 					}
 					System.out.println();
@@ -203,16 +203,16 @@ public class SQLAccountManager
 			if (ps.executeUpdate() > 0)
 			{
 				
-				System.out.println("Account " + account + " has been created or updated");
+				System.out.println("Account " + account + " wurde erstellt oder aktualisiert");
 			}
 			else
 			{
-				System.out.println("Account " + account + " does not exist");
+				System.out.println("Account " + account + " existiert nicht");
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println("There was error while adding/updating account:");
+			System.out.println("Bei der Erstellung / Aktualisierung ist ein Fehler aufgetreten:");
 			System.out.println(e.getMessage());
 		}
 	}
